@@ -5,7 +5,7 @@ import { wait, randomNumber } from './utils'
 import { fetchPrices } from './price'
 
 export const rpc = new JsonRpc(ENDPOINTS, { fetch: fetch })
-export const api = new Api({ rpc, signatureProvider: new JsSignatureProvider(PRIVATE_KEYS) })
+export const api = new Api({ rpc, signatureProvider: new JsSignatureProvider(PRIVATE_KEYS as any) })
 
 const process = async (account: BotAccount) => {
     const prices = await fetchPrices()

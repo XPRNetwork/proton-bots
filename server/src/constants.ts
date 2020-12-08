@@ -7,7 +7,12 @@ if (!CHAIN) {
 }
 
 export const ENDPOINTS = CHAIN === 'proton' ? ["https://proton.greymass.com"] : ["https://testnet.protonchain.com"]
+
 export const PRIVATE_KEYS = [process.env.PRIVATE_KEY]
+if (!process.env.PRIVATE_KEY) {
+    console.error('No PRIVATE_KEY provided in .env')
+    process.exit(0)
+}
 
 export const ORACLE_CONTRACT = "oracles"
 export const ORACLES = [

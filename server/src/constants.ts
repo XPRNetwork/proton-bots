@@ -1,6 +1,3 @@
-const path = require('path'); 
-require('dotenv').config({ path: path.join(__dirname, '../.env') });
-
 export const CHAIN = process.env.CHAIN
 if (!CHAIN) {
     console.error('No CHAIN provided')

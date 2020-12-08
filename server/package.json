@@ -20,30 +20,9 @@
     "analyze": "size-limit --why"
   },
   "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "name": "server",
   "author": "Syed Jafri",
   "module": "dist/server.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/server.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/server.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.1",
     "@types/lodash.throttle": "^4.1.6",

@@ -45,7 +45,7 @@ namespace proton
       // Save stats
       auto current_time_point = eosio::current_time_point();
       auto utc_hour = (current_time_point.sec_since_epoch() % 86400) / 3600;
-      auto utc_hour_to_erase = (utc_hour + 23) % 24;
+      auto utc_hour_to_erase = (utc_hour + 1) % 24;
       _bots.modify(bot, get_self(), [&](auto& b) {
         b.tx_count_by_utc_hour[utc_hour]++;
         b.tx_count_by_utc_hour[utc_hour_to_erase] = 0;

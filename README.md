@@ -1,15 +1,8 @@
-# Proton Boilerplate
-
-## Start
-```
-git clone https://github.com/jafri/proton-boilerplate proton-app
-```
+# Proton Bots
 
 ## Directory
 - atom: Smart Contracts
-- frontend: Frontend UI for Smart Contract
 - js_tests: JS Tests
-- c++_tests: C++ Tests (optional, have to manually build EOSIO)
 
 ## Install
 <details>

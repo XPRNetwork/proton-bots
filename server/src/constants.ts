@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 
 export const CHAIN = process.env.CHAIN
 if (!CHAIN) {

@@ -1,12 +1,7 @@
 {
     "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
     "version": "eosio::abi/1.1",
-    "types": [
-        {
-            "new_type_name": "data_variant",
-            "type": "variant_string_uint64_float64"
-        }
-    ],
+    "types": [],
     "structs": [
         {
             "name": "Bot",
@@ -92,6 +87,24 @@
             "name": "cleanup",
             "base": "",
             "fields": []
+        },
+        {
+            "name": "data_variant",
+            "base": "",
+            "fields": [
+                {
+                    "name": "d_string",
+                    "type": "string?"
+                },
+                {
+                    "name": "d_uint64_t",
+                    "type": "uint64?"
+                },
+                {
+                    "name": "d_double",
+                    "type": "float64?"
+                }
+            ]
         },
         {
             "name": "pair_uint8_uint64",
@@ -183,10 +196,5 @@
         }
     ],
     "ricardian_clauses": [],
-    "variants": [
-        {
-            "name": "variant_string_uint64_float64",
-            "types": ["string","uint64","float64"]
-        }
-    ]
+    "variants": []
 }

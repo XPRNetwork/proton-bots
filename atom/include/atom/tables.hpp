@@ -1,7 +1,49 @@
 #pragma once
 
 namespace proton {
-  typedef std::variant<std::string, uint64_t, double> data_variant;
+  struct data_variant {
+    std::optional<std::string> d_string;
+    std::optional<uint64_t> d_uint64_t;
+    std::optional<double> d_double;
+
+    data_variant () {};
+    data_variant (std::string val) { d_string = val; };
+    data_variant (uint64_t val) { d_uint64_t = val; };
+    data_variant (double val) { d_double = val; };
+    
+    bool operator < ( const data_variant& rhs ) const { return true; }
+    bool operator > ( const data_variant& rhs ) const { return true; }
+
+    std::string data_type ()const {
+      if (d_string.has_value()) {
+        return "string";
+      } else if (d_uint64_t.has_value()) {
+        return "uint64_t";
+      } else if (d_double.has_value()) {
+        return "double";
+      } else {
+        eosio::check(false, "invalid data_variant type");
+        return {};
+      }
+    };
+
+    template<typename T>
+    T get ()const {
+      std::string data_type = this->data_type();
+      if constexpr (std::is_same<T, std::string>::value && data_type == "string") {
+        return *d_string;
+      } else if (std::is_same<T, uint64_t>::value && data_type == "uint64_t") {
+        return *d_uint64_t;
+      } else if (std::is_same<T, double>::value && data_type == "double") {
+        return *d_double;
+      } else {
+        eosio::check(false, "invalid data_variant get");
+        return {};
+      }
+    };
+
+    EOSLIB_SERIALIZE( data_variant, (d_string)(d_uint64_t)(d_double) )
+  };
 
   struct BotEntry {
     uint64_t bot_index;

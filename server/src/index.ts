@@ -21,9 +21,9 @@ const process = async (account: BotAccount) => {
             data: {
                 account: account.name,
                 entries: [
-                    { bot_index: account.bot_index, data: ["float64", price] }
+                    { bot_index: account.bot_index, data: { d_double: price, d_string: null, d_uint64_t: null } }
                 ],
-                nonce: randomNumber(1, 1000)
+                nonce: randomNumber(1, 100000)
             },
             authorization: [ { actor: account.name, permission: account.permission } ]
         }

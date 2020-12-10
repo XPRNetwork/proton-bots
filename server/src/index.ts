@@ -23,7 +23,7 @@ const process = async (account: BotAccount) => {
                 entries: [
                     { bot_index: account.bot_index, data: { d_double: price, d_string: null, d_uint64_t: null } }
                 ],
-                nonce: randomNumber(1, 100000)
+                nonce: randomNumber(1, 200000)
             },
             authorization: [ { actor: account.name, permission: account.permission } ]
         }

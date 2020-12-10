@@ -22,9 +22,9 @@ export const ORACLES = [
 
 export const BOTS_CONTRACT = "bot"
 export const BOTS_ACCOUNTS: BotAccount[] = [
-    { bot_index: 0, name: 'bot1', permission: 'active', parallel: 1, timer: (86400 / 500) * 1000, ...ORACLES[1] },
-    { bot_index: 1, name: 'bot2', permission: 'active', parallel: 1, timer: (86400 / 5000) * 1000, ...ORACLES[1] },
-    { bot_index: 2, name: 'bot3', permission: 'active', parallel: 1, timer: (86400 / 50000) * 1000, ...ORACLES[1] },
-    { bot_index: 3, name: 'bot4', permission: 'active', parallel: 1, timer: (86400 / 500000) * 1000 , ...ORACLES[1] }
+    { bot_index: 0, name: 'bot1', permission: 'active', parallel: Math.ceil(500 / 86400) * 80, timer: (86400 / 500) * 1000, ...ORACLES[1] },
+    { bot_index: 1, name: 'bot2', permission: 'active', parallel: Math.ceil(5000 / 86400) * 80, timer: (86400 / 5000) * 1000, ...ORACLES[1] },
+    { bot_index: 2, name: 'bot3', permission: 'active', parallel: Math.ceil(50000 / 86400) * 80, timer: (86400 / 50000) * 1000, ...ORACLES[1] },
+    { bot_index: 3, name: 'bot4', permission: 'active', parallel: Math.ceil(500000 / 86400) * 80, timer: (86400 / 500000) * 1000 , ...ORACLES[1] }
 ]
 export const PRICE_FETCH_TIMER = 5000

@@ -37,8 +37,6 @@ const process = async (account: BotAccount) => {
         }
     ]
 
-    console.dir(actions, { depth: null })
-
     try {
         const result = await api.transact({ actions }, { useLastIrreversible: true, expireSeconds: 400 })
         return result

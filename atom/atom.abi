@@ -135,6 +135,10 @@
                 {
                     "name": "nonce",
                     "type": "uint64"
+                },
+                {
+                    "name": "oracle_index",
+                    "type": "uint64"
                 }
             ]
         },

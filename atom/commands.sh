@@ -1,6 +1,6 @@
 cleosp push action bot cleanup '[]' -p bot 
 
-cleosp set contract bot atom 
+cleospt set contract bot atom 
 
 cleosp push action bot addbot '{
         "bot": {

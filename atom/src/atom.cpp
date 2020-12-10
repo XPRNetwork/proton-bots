@@ -31,7 +31,8 @@ namespace proton
   void atom::process (
     const eosio::name& account,
     const std::vector<BotEntry>& entries,
-    const uint64_t& nonce
+    const uint64_t& nonce,
+    const uint64_t& oracle_index
   ) {
     for (const auto& entry: entries) {
       // Find bot
@@ -40,7 +41,7 @@ namespace proton
       
       // Send oracle
       feed_action f_action( bot->oracle_contract, {account, "active"_n} );
-      f_action.send(account, bot->feed_index, entry.data);
+      f_action.send(account, oracle_index, entry.data);
 
       // Save stats
       auto current_time_point = eosio::current_time_point();

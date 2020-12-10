@@ -27,7 +27,8 @@ namespace proton {
     ACTION process   (
       const eosio::name& account,
       const std::vector<BotEntry>& entries,
-      const uint64_t& nonce
+      const uint64_t& nonce,
+      const uint64_t& oracle_index
     );
 
     ACTION cleanup () {

@@ -1,8 +1,8 @@
-cleospt set contract bot atom 
+cleosp push action bot cleanup '[]' -p bot 
 
-cleospt push action bot cleanup '[]' -p bot 
+cleosp set contract bot atom 
 
-cleospt push action bot addbot '{
+cleosp push action bot addbot '{
         "bot": {
                 "index": 0,
                 "account": "bot1",
@@ -15,7 +15,7 @@ cleospt push action bot addbot '{
         }
 }' -p bot;
 
-cleospt push action bot addbot '{
+cleosp push action bot addbot '{
         "bot": {
                 "index": 1,
                 "account": "bot2",
@@ -28,7 +28,7 @@ cleospt push action bot addbot '{
         }
 }' -p bot;
 
-cleospt push action bot addbot '{
+cleosp push action bot addbot '{
         "bot": {
                 "index": 2,
                 "account": "bot3",
@@ -41,7 +41,7 @@ cleospt push action bot addbot '{
         }
 }' -p bot;
 
-cleospt push action bot addbot '{
+cleosp push action bot addbot '{
         "bot": {
                 "index": 3,
                 "account": "bot4",
@@ -54,7 +54,7 @@ cleospt push action bot addbot '{
         }
 }' -p bot;
 
-cleospt push action bot process '{
+cleosp push action bot process '{
         "account": "bot",
         "bot_index": 0,
         "data": ["float64", 0.00000045]

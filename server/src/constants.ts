@@ -5,8 +5,8 @@ if (!CHAIN) {
 }
 
 export const ENDPOINTS = CHAIN === 'proton'
-    ? ["https://proton.greymass.com", "https://proton.pink.gg/v1/chain/get_info"]
-    : ["https://testnet.protonchain.com", "https://test.proton.pink.gg/v1/chain/get_info"]
+    ? ["https://proton.eoscafeblock.com", "https://proton.pink.gg", "https://proton.greymass.com", ]
+    : ["https://testnet.protonchain.com", "https://test.proton.pink.gg"]
 
 export const PRIVATE_KEYS = [process.env.PRIVATE_KEY]
 if (!process.env.PRIVATE_KEY) {

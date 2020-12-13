@@ -4,10 +4,17 @@ import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS } from './constan
 import { wait, randomNumber } from './utils'
 import { fetchPrices } from './price'
 
-export const rpc = new JsonRpc(ENDPOINTS, { fetch: fetch })
-export const api = new Api({ rpc, signatureProvider: new JsSignatureProvider(PRIVATE_KEYS as any) })
+const manager = ENDPOINTS.map(endpoint => {
+    const endpoints = [endpoint, ...ENDPOINTS]
+    const rpc = new JsonRpc(endpoints, { fetch: fetch })
+    const api = new Api({ rpc, signatureProvider: new JsSignatureProvider(PRIVATE_KEYS as any) })
+    return {
+        rpc,
+        api
+    }
+})
 
-const process = async (account: BotAccount) => {
+const process = async (account: BotAccount, index: number = 1) => {
     const prices = await fetchPrices()
     if (prices[account.baseId] === undefined || prices[account.baseId][account.quoteId] === undefined) {
         console.error('Not configured for price: ', account)
@@ -38,7 +45,7 @@ const process = async (account: BotAccount) => {
     ]
 
     try {
-        const result = await api.transact({ actions }, { useLastIrreversible: true, expireSeconds: 400 })
+        const result = await manager[index % manager.length].api.transact({ actions }, { useLastIrreversible: true, expireSeconds: 400 })
         return result
     } catch (e) {
         console.log(e)
@@ -48,7 +55,7 @@ const process = async (account: BotAccount) => {
 const processor = async (account: BotAccount) => {
     const toProcess = Array(account.parallel).fill(0)
     await Promise.all(
-        toProcess.map(() => process(account))
+        toProcess.map((_, i) => process(account, i))
     )
     toProcess.forEach(() => console.count(account.name))
 

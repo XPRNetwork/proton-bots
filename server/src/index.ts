@@ -4,9 +4,8 @@ import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS } from './constan
 import { wait, randomNumber } from './utils'
 import { fetchPrices } from './price'
 
-const manager = ENDPOINTS.map(endpoint => {
-    const endpoints = [endpoint, ...ENDPOINTS]
-    const rpc = new JsonRpc(endpoints, { fetch: fetch })
+const manager = ENDPOINTS.map((_) => {
+    const rpc = new JsonRpc(ENDPOINTS, { fetch: fetch })
     const api = new Api({ rpc, signatureProvider: new JsSignatureProvider(PRIVATE_KEYS as any) })
     return {
         rpc,

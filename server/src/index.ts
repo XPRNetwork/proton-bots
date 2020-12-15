@@ -21,7 +21,7 @@ const process = async (account: BotAccount, index: number = 1) => {
     const price = prices[account.baseId][account.quoteId]
 
     // @ts-ignore-next-line
-    const actions = [...Array(ACTIONS_MULTIPLIER).keys()].map((i) => ({
+    const actions = Array(i).fill().map((_) => ({
         account: BOTS_CONTRACT,
         name: 'process',
         data: {

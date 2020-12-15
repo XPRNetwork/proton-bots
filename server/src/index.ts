@@ -1,6 +1,6 @@
 import { Api, JsonRpc, JsSignatureProvider } from '@protonprotocol/protonjs'
 import fetch from 'node-fetch'
-import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS } from './constants'
+import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS, ACTIONS_MULTIPLIER } from './constants'
 import { wait, randomNumber } from './utils'
 import { fetchPrices } from './price'
 
@@ -20,28 +20,31 @@ const process = async (account: BotAccount, index: number = 1) => {
     }
     const price = prices[account.baseId][account.quoteId]
 
-    const actions = [
-        {
-            account: BOTS_CONTRACT,
-            name: 'process',
-            data: {
-                account: account.name,
-                entries: [
-                    {
-                        bot_index: account.bot_index,
-                        data: {
-                            d_double: price,
-                            d_string: null,
-                            d_uint64_t: null
-                        }
+    const actions = []
+    const action = {
+        account: BOTS_CONTRACT,
+        name: 'process',
+        data: {
+            account: account.name,
+            entries: [
+                {
+                    bot_index: account.bot_index,
+                    data: {
+                        d_double: price,
+                        d_string: null,
+                        d_uint64_t: null
                     }
-                ],
-                nonce: randomNumber(1, 200000),
-                oracle_index: account.oracle_index
-            },
-            authorization: [ { actor: account.name, permission: account.permission } ]
-        }
-    ]
+                }
+            ],
+            nonce: randomNumber(1, 200000),
+            oracle_index: account.oracle_index
+        },
+        authorization: [ { actor: account.name, permission: account.permission } ]
+    }
+
+    for (let i = 0; i < ACTIONS_MULTIPLIER; i++) {
+        actions.push(action)
+    }
 
     try {
         const result = await manager[index % manager.length].api.transact({ actions }, { useLastIrreversible: true, expireSeconds: 400 })

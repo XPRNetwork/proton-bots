@@ -36,7 +36,7 @@ const process = async (account: BotAccount, index: number = 1) => {
                     }
                 }
             ],
-            nonce: randomNumber(1, 10000000),
+            nonce: randomNumber(1, 200000),
             oracle_index: account.oracle_index
         },
         authorization: [ { actor: account.name, permission: account.permission } ]

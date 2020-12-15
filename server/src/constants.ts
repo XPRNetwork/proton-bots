@@ -28,4 +28,4 @@ export const BOTS_ACCOUNTS: BotAccount[] = [
     { bot_index: 3, name: 'bot4', permission: 'active', parallel: 1200, timer: 1000, ...ORACLES[1] }
 ]
 export const PRICE_FETCH_TIMER = 5000
-export const ACTIONS_MULTIPLIER = 10
+export const ACTIONS_MULTIPLIER = 15

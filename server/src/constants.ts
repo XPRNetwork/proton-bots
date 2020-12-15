@@ -29,3 +29,4 @@ export const BOTS_ACCOUNTS: BotAccount[] = [
 ]
 export const PRICE_FETCH_TIMER = 5000
 export const ACTIONS_MULTIPLIER = 15
+export const NUM_CPUS = 4

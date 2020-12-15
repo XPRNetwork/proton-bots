@@ -20,8 +20,8 @@ const process = async (account: BotAccount, index: number = 1) => {
     }
     const price = prices[account.baseId][account.quoteId]
 
-    const actions = []
-    const action = {
+    // @ts-ignore-next-line
+    const actions = [...Array(ACTIONS_MULTIPLIER).keys()].map((i) => ({
         account: BOTS_CONTRACT,
         name: 'process',
         data: {
@@ -40,11 +40,7 @@ const process = async (account: BotAccount, index: number = 1) => {
             oracle_index: account.oracle_index
         },
         authorization: [ { actor: account.name, permission: account.permission } ]
-    }
-
-    for (let i = 0; i < ACTIONS_MULTIPLIER; i++) {
-        actions.push(action)
-    }
+    }))
 
     try {
         const result = await manager[index % manager.length].api.transact({ actions }, { useLastIrreversible: true, expireSeconds: 400 })

@@ -5,7 +5,7 @@ if (!CHAIN) {
 }
 
 export const ENDPOINTS = CHAIN === 'proton'
-    ? ["https://proton.eoscafeblock.com", "https://proton.eosusa.news", "https://proton.cryptolions.io", "https://proton.pink.gg", "https://proton.eoscafeblock.com"]
+    ? Array(10).fill(0).map(_ => "https://proton.eoscafeblock.com") // ["https://proton.eosusa.news", "https://proton.cryptolions.io", "https://proton.pink.gg", "https://proton.eoscafeblock.com"]
     : ["https://testnet.protonchain.com", "https://testnet.proton.pink.gg"]
 
 export const PRIVATE_KEYS = [process.env.PRIVATE_KEY]
@@ -23,9 +23,9 @@ export const ORACLES = [
 export const BOTS_CONTRACT = "bot"
 export const BOTS_ACCOUNTS: BotAccount[] = [
     { bot_index: 0, name: 'bot1', permission: 'active', parallel: 4, timer: (86400 / 500) * 1000, ...ORACLES[1] },
-    { bot_index: 1, name: 'bot2', permission: 'active', parallel: 20, timer: (86400 / 5000) * 1000, ...ORACLES[1] },
-    { bot_index: 2, name: 'bot3', permission: 'active', parallel: 100, timer: (86400 / 50000) * 1000, ...ORACLES[1] },
-    { bot_index: 3, name: 'bot4', permission: 'active', parallel: 1300, timer: 1000, ...ORACLES[1] }
+    { bot_index: 1, name: 'bot2', permission: 'active', parallel: 4, timer: (86400 / 5000) * 1000, ...ORACLES[1] },
+    { bot_index: 2, name: 'bot3', permission: 'active', parallel: 20, timer: (86400 / 50000) * 1000, ...ORACLES[1] },
+    { bot_index: 3, name: 'bot4', permission: 'active', parallel: 1500, timer: 1000, ...ORACLES[1] }
 ]
 export const PRICE_FETCH_TIMER = 5000
-export const ACTIONS_MULTIPLIER = 16
+export const ACTIONS_MULTIPLIER = 15

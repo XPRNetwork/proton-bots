@@ -25,7 +25,7 @@ export const BOTS_ACCOUNTS: BotAccount[] = [
     { bot_index: 0, name: 'bot1', permission: 'active', parallel: 1, timer: (86400 / 500) * 1000, ...ORACLES[1] },
     { bot_index: 1, name: 'bot2', permission: 'active', parallel: 1, timer: (86400 / 5000) * 1000, ...ORACLES[1] },
     { bot_index: 2, name: 'bot3', permission: 'active', parallel: 20, timer: (86400 / 50000) * 1000, ...ORACLES[1] },
-    { bot_index: 3, name: 'bot4', permission: 'active', parallel: 200, timer: (86400 / 500000) * 1000, ...ORACLES[1] }
+    { bot_index: 3, name: 'bot4', permission: 'active', parallel: 200, timer: 2000, ...ORACLES[1] }
 ]
 export const PRICE_FETCH_TIMER = 5000
 export const ACTIONS_MULTIPLIER = 1

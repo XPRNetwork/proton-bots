@@ -55,7 +55,6 @@ const processor = async (account: BotAccount) => {
     await Promise.all(
         toProcess.map((_, i) => process(account, i))
     )
-    toProcess.forEach(() => console.count(account.name))
 
     await wait(account.timer)
     processor(account)

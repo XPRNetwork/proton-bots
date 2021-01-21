@@ -1,6 +1,6 @@
 import { Api, JsonRpc, JsSignatureProvider } from '@protonprotocol/protonjs'
 import fetch from 'node-fetch'
-import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS, ACTIONS_MULTIPLIER, ORACLES } from './constants'
+import { ENDPOINTS, PRIVATE_KEYS, BOTS_CONTRACT, BOTS_ACCOUNTS, ACTIONS_MULTIPLIER } from './constants'
 import { wait, randomNumber } from './utils'
 import { fetchPrices } from './price'
 
@@ -23,7 +23,7 @@ const process = async (account: BotAccount, index: number = 1) => {
             name: 'process2',
             data: {
                 account: account.name,
-                entries: ORACLES.reduce((acc: OracleEntry[], oracle: Oracle) => {
+                entries: account.oracles.reduce((acc: OracleEntry[], oracle: Oracle) => {
                     if (prices[oracle.baseId] === undefined || prices[oracle.baseId][oracle.quoteId] === undefined) {
                         console.error('Not configured for price: ', account)
                     } else {

@@ -4,6 +4,7 @@ interface BotAccount {
     permission: string;
     timer: number;
     parallel: number;
+    oracles: Oracle[]
 }
 
 interface Data {

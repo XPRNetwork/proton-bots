@@ -15,7 +15,7 @@ if (!process.env.PRIVATE_KEY) {
 }
 
 export const ORACLE_CONTRACT = "oracles"
-const ORACLES: Oracle[] = [
+export const ORACLES: Oracle[] = [
     { oracle_index: 0, baseCurrency: 'XPR', baseId: 'proton', quoteCurrency: 'BTC', quoteId: 'btc' },
     { oracle_index: 1, baseCurrency: 'BTC', baseId: 'bitcoin', quoteCurrency: 'USD', quoteId: 'usd' }
 ]

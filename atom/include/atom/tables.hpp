@@ -52,6 +52,13 @@ namespace proton {
     EOSLIB_SERIALIZE ( BotEntry, (bot_index)(data) )
   };
 
+  struct OracleEntry {
+    uint64_t oracle_index;
+    data_variant data;
+
+    EOSLIB_SERIALIZE ( OracleEntry, (oracle_index)(data) )
+  };
+
   static inline eosio::checksum256 get_txid () {
     auto size = eosio::transaction_size();
     char buf[size];

@@ -28,6 +28,7 @@ namespace proton
     _bots.erase(bot);
   }
 
+  // Multiple bots entering data for 1 oracle
   void atom::process (
     const eosio::name& account,
     const std::vector<BotEntry>& entries,
@@ -42,6 +43,41 @@ namespace proton
       // Send oracle
       feed_action f_action( bot->oracle_contract, {account, "active"_n} );
       f_action.send(account, oracle_index, entry.data);
+
+      // Save stats
+      auto current_time_point = eosio::current_time_point();
+      auto utc_hour = (current_time_point.sec_since_epoch() % 86400) / 3600;
+      auto utc_hour_to_erase = (utc_hour + 1) % 24;
+      _bots.modify(bot, get_self(), [&](auto& b) {
+        b.tx_count_by_utc_hour[utc_hour]++;
+        b.tx_count_by_utc_hour[utc_hour_to_erase] = 0;
+        
+        b.history.insert(b.history.begin(), { get_txid(), current_time_point, entry.data });
+        if (b.history.size() > b.max_history) {
+          b.history.pop_back();
+        }
+      });
+    }
+  }
+
+  // Multiple oracle entries by 1 bot
+  void atom::process2 (
+    const eosio::name& account,
+    const std::vector<OracleEntry>& entries,
+    const uint64_t& nonce,
+    const uint64_t& bot_index
+  ) {
+    // Auth
+    require_auth(account);
+    
+    // Find bot
+    auto bot = _bots.require_find(bot_index, "bot not found");
+    eosio::check(account == bot->account, "account mismatch");
+    
+    for (const auto& entry: entries) {
+      // Send oracle
+      feed_action f_action(bot->oracle_contract, {account, "active"_n} );
+      f_action.send(account, entry.oracle_index, entry.data);
 
       // Save stats
       auto current_time_point = eosio::current_time_point();

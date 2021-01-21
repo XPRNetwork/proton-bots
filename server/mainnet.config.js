@@ -6,7 +6,7 @@ module.exports = {
         node_args : '-r dotenv/config',
         watch: false,
         env: {
-            'CHAIN': 'proton'
+          'CHAIN': 'proton'
         }
       }
     ]

@@ -30,6 +30,12 @@ namespace proton {
       const uint64_t& nonce,
       const uint64_t& oracle_index
     );
+    ACTION process2 (
+      const eosio::name& account,
+      const std::vector<OracleEntry>& entries,
+      const uint64_t& nonce,
+      const uint64_t& bot_index
+    );
 
     ACTION cleanup () {
       require_auth(get_self());

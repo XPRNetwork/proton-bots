@@ -56,6 +56,20 @@
             ]
         },
         {
+            "name": "OracleEntry",
+            "base": "",
+            "fields": [
+                {
+                    "name": "oracle_index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "data",
+                    "type": "data_variant"
+                }
+            ]
+        },
+        {
             "name": "Tx",
             "base": "",
             "fields": [
@@ -143,6 +157,28 @@
             ]
         },
         {
+            "name": "process2",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "entries",
+                    "type": "OracleEntry[]"
+                },
+                {
+                    "name": "nonce",
+                    "type": "uint64"
+                },
+                {
+                    "name": "bot_index",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
             "name": "removebot",
             "base": "",
             "fields": [
@@ -167,27 +203,32 @@
         {
             "name": "addbot",
             "type": "addbot",
-            "ricardian_contract": ""
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Add Bot\nsummary: 'Add Bot'\nicon:\n---\n."
         },
         {
             "name": "cleanup",
             "type": "cleanup",
-            "ricardian_contract": ""
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Cleanup\nsummary: 'Cleanup'\nicon:\n---\n."
         },
         {
             "name": "process",
             "type": "process",
-            "ricardian_contract": ""
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Process\nsummary: 'Process'\nicon:\n---\n."
+        },
+        {
+            "name": "process2",
+            "type": "process2",
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Process2\nsummary: 'Process2'\nicon:\n---\n."
         },
         {
             "name": "removebot",
             "type": "removebot",
-            "ricardian_contract": ""
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Remove Bot\nsummary: 'Remove Bot'\nicon:\n---\n."
         },
         {
             "name": "updatebot",
             "type": "updatebot",
-            "ricardian_contract": ""
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Update Bot\nsummary: 'Update Bot'\nicon:\n---\n."
         }
     ],
     "tables": [

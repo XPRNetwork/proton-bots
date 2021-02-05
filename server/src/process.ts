@@ -24,7 +24,7 @@ const process = async (account: BotAccount, index: number = 1) => {
             data: {
                 account: account.name,
                 entries: account.oracles.reduce((acc: OracleEntry[], oracle: Oracle) => {
-                    if (prices[oracle.baseId] === undefined || prices[oracle.baseId][oracle.quoteId] === undefined) {
+                    if (prices[oracle.baseId] === undefined || prices[oracle.baseId][oracle.quoteId] === undefined || prices[oracle.baseId][oracle.quoteId] <= 0) {
                         console.error('Not configured for price: ', account)
                     } else {
                         const price = prices[oracle.baseId][oracle.quoteId]

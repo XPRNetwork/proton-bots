@@ -26,7 +26,7 @@ interface Process {
     account: string;
     entries: BotEntry[];
     nonce: number;
-    bot_index: number;
+    oracle_index: number;
 }
 interface Process2 {
     account: string;

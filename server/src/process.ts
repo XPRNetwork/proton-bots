@@ -17,32 +17,30 @@ const process = async (account: BotAccount, index: number = 1) => {
     const prices = await fetchPrices()
 
     const actions = []
+
     for (let i = 0; i < ACTIONS_MULTIPLIER; i++) {
+        if (prices[account.oracle.baseId] === undefined || prices[account.oracle.baseId][account.oracle.quoteId] === undefined || prices[account.oracle.baseId][account.oracle.quoteId] <= 0) {
+            console.error('Not configured for price: ', account)
+        } 
+
+        const price = prices[account.oracle.baseId][account.oracle.quoteId]
+
         actions.push({
             account: BOTS_CONTRACT,
-            name: 'process2',
+            name: 'process',
             data: {
                 account: account.name,
-                entries: account.oracles.reduce((acc: OracleEntry[], oracle: Oracle) => {
-                    if (prices[oracle.baseId] === undefined || prices[oracle.baseId][oracle.quoteId] === undefined || prices[oracle.baseId][oracle.quoteId] <= 0) {
-                        console.error('Not configured for price: ', account)
-                    } else {
-                        const price = prices[oracle.baseId][oracle.quoteId]
-                        acc.push({
-                            oracle_index: oracle.oracle_index,
-                            data: {
-                                d_double: price,
-                                d_string: null,
-                                d_uint64_t: null
-                            }
-                        })
+                entries: [{
+                    bot_index: account.bot_index,
+                    data: {
+                        d_double: price,
+                        d_string: null,
+                        d_uint64_t: null
                     }
-    
-                    return acc
-                }, []),
+                }],
                 bot_index: account.bot_index,
                 nonce: randomNumber(1, 200000)
-            } as Process2,
+            } as Process,
             authorization: [ { actor: account.name, permission: account.permission } ]
         })
     }

@@ -4,7 +4,7 @@ interface BotAccount {
     permission: string;
     timer: number;
     parallel: number;
-    oracles: Oracle[]
+    oracle: Oracle
 }
 
 interface Data {
@@ -16,6 +16,17 @@ interface Data {
 interface OracleEntry {
     oracle_index: number;
     data: Data;
+}
+
+interface BotEntry {
+    bot_index: number;
+    data: Data;
+}
+interface Process {
+    account: string;
+    entries: BotEntry[];
+    nonce: number;
+    bot_index: number;
 }
 interface Process2 {
     account: string;
